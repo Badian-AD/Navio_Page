@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя приватная страница</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #4a44b5;
+            --background-color: #f8f9fa;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 50px auto;
+            padding: 40px;
+            max-width: 800px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+        
+        .file-card {
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px 0;
+            background: #f8f9ff;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .file-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+        }
+        
+        .file-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+        
+        .btn-download {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 10px;
+            padding: 8px 20px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-download:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        
+        .password-section {
+            background: #fff3cd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <!-- Заголовок -->
+            <div class="header">
+                <div class="avatar">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1>Приватная страница</h1>
+                <p class="text-muted">Добро пожаловать на мою защищенную страницу с файлами</p>
+            </div>
+
+            <!-- Секция с паролем -->
+            <div class="password-section">
+                <h4><i class="fas fa-shield-alt"></i> Защита паролем</h4>
+                <p>Эта страница защищена паролем для обеспечения конфиденциальности</p>
+            </div>
+
+            <!-- Список файлов -->
+            <div class="files-section">
+                <h3><i class="fas fa-folder-open"></i> Мои файлы</h3>
+                
+                <div class="file-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file-pdf file-icon"></i>
+                            <strong>Важный документ.pdf</strong>
+                            <p class="text-muted mb-0">Описание документа и его содержимое</p>
+                        </div>
+                        <button class="btn btn-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </button>
+                    </div>
+                </div>
+
+                <div class="file-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file-image file-icon"></i>
+                            <strong>Изображение.jpg</strong>
+                            <p class="text-muted mb-0">Фотографии и картинки</p>
+                        </div>
+                        <button class="btn btn-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </button>
+                    </div>
+                </div>
+
+                <div class="file-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file-archive file-icon"></i>
+                            <strong>Архив.zip</strong>
+                            <p class="text-muted mb-0">Сжатая папка с файлами</p>
+                        </div>
+                        <button class="btn btn-download">
+                            <i class="fas fa-download"></i> Скачать
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Футер -->
+            <div class="text-center mt-5">
+                <p class="text-muted">
+                    <i class="fas fa-clock"></i> Обновлено: <span id="current-date"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Обновляем дату
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('ru-RU');
+        
+        // Простая защита паролем (замените 'мойпароль123' на свой пароль)
+        function checkPassword() {
+            const password = prompt('Введите пароль для доступа:');
+            if (password !== 'мойпароль123') {
+                document.body.innerHTML = '<div class="container mt-5"><div class="alert alert-danger text-center"><h1>🚫 Доступ запрещен</h1><p>Неверный пароль</p></div></div>';
+            }
+        }
+        
+        // Раскомментируйте следующую строку, чтобы включить защиту паролем:
+        // checkPassword();
+    </script>
+</body>
+</html>
